@@ -30,25 +30,67 @@ var main = function(questionObjects){
 					$("main .content").append($("<p>").text(element.title));
 					$("main .content").append($("<p>").text(element.explanation));
 				});
-				
+
 			} else if($element.parent().is(":nth-child(2)")){
 				//"Travel" tab clicked.
 				console.log("Clicked Travel");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "travel"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main content").append($("<p>").text(element.explanation));
+					}
+				});
 			} else if($element.parent().is(":nth-child(3)")){
 				//Food tab clicked.
 				console.log("Clicked Food");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "food"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main .content").append($("<p>").text(element.explanation));
+					}
+				});
 			} else if($element.parent().is(":nth-child(4)")){
 				//Entertainment tab clicked.
 				console.log("Clicked Entertainment");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "entertainment"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main .content").append($("<p>").text(element.explanation));
+					}
+				});
 			} else if($element.parent().is(":nth-child(5)")){
 				//Relationships tab clicked.
 				console.log("Clicked Relationships");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "relationships"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main .content").append($("<p>").text(element.explanation));
+					}
+				});
 			} else if($element.parent().is(":nth-child(6)")){
 				//Career tab clicked
 				console.log("Clicked the Career");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "career"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main .content").append($("<p>").text(element.explanation));
+					}
+				});
 			} else if($element.parent().is(":nth-child(7)")){
 				//Life tab clicked.
 				console.log("Clicked Life");
+
+				questionObjects.forEach(function(element){
+					if(element.tag === "life"){
+						$("main .content").append($("<p>").text(element.title));
+						$("main .content").append($("<p>").text(element.explanation));
+					}
+				});
 			}
 
 			return false;
