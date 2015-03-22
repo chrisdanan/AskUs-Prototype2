@@ -3,6 +3,12 @@ var main = function(questionObjects){
 
 	//console.log("Hello Vane");
 
+	function appendElements(element){
+		$("main .content").append($("<p>").text(element.title));
+		$("main .content").append($("<p>").text(element.explanation));
+	};
+
+	//Output question objects to see that we are getting the correct information.
 	questionObjects.forEach(function(element){
 		console.log(element);
 		console.log(element.title);
@@ -27,8 +33,7 @@ var main = function(questionObjects){
 				console.log("Clicked All Questions");
 
 				questionObjects.forEach(function(element){
-					$("main .content").append($("<p>").text(element.title));
-					$("main .content").append($("<p>").text(element.explanation));
+					appendElements(element);
 				});
 
 			} else if($element.parent().is(":nth-child(2)")){
@@ -37,8 +42,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "travel"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			} else if($element.parent().is(":nth-child(3)")){
@@ -47,8 +51,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "food"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main .content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			} else if($element.parent().is(":nth-child(4)")){
@@ -57,8 +60,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "entertainment"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main .content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			} else if($element.parent().is(":nth-child(5)")){
@@ -67,8 +69,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "relationships"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main .content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			} else if($element.parent().is(":nth-child(6)")){
@@ -77,8 +78,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "career"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main .content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			} else if($element.parent().is(":nth-child(7)")){
@@ -87,8 +87,7 @@ var main = function(questionObjects){
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "life"){
-						$("main .content").append($("<p>").text(element.title));
-						$("main .content").append($("<p>").text(element.explanation));
+						appendElements(element);
 					}
 				});
 			}
