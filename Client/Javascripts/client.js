@@ -1,12 +1,18 @@
 var main = function(questionObjects){
 	"use strict";
 
+	var childNumber = 1;
 	//console.log("Hello Vane");
 
 	function appendElements(element){
-		$("main .content").append($("<p>").text(element.title));
-		$("main .content").append($("<p>").text(element.explanation));
-	};
+
+		$("main .content").append($("<div class='question'>"));
+		$("div.question:nth-child(" + childNumber + ")").append($("<p class='titleOfQuestion'>").text(element.title));
+		$("div.question:nth-child(" + childNumber + ")").append($("<p class='explanationOfQuestion'>").text(element.explanation));
+		$("main .content").append($("</div>"));
+
+		childNumber++;
+	}
 
 	//Output question objects to see that we are getting the correct information.
 	questionObjects.forEach(function(element){
@@ -32,6 +38,8 @@ var main = function(questionObjects){
 				//"All Questions" tab clicked.
 				console.log("Clicked All Questions");
 
+				childNumber = 1;
+
 				questionObjects.forEach(function(element){
 					appendElements(element);
 				});
@@ -39,6 +47,8 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(2)")){
 				//"Travel" tab clicked.
 				console.log("Clicked Travel");
+
+				childNumber = 1;
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "travel"){
@@ -49,6 +59,8 @@ var main = function(questionObjects){
 				//Food tab clicked.
 				console.log("Clicked Food");
 
+				childNumber = 1;
+
 				questionObjects.forEach(function(element){
 					if(element.tag === "food"){
 						appendElements(element);
@@ -57,6 +69,8 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(4)")){
 				//Entertainment tab clicked.
 				console.log("Clicked Entertainment");
+
+				childNumber = 1;
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "entertainment"){
@@ -67,6 +81,8 @@ var main = function(questionObjects){
 				//Relationships tab clicked.
 				console.log("Clicked Relationships");
 
+				childNumber = 1;
+
 				questionObjects.forEach(function(element){
 					if(element.tag === "relationships"){
 						appendElements(element);
@@ -76,6 +92,8 @@ var main = function(questionObjects){
 				//Career tab clicked
 				console.log("Clicked the Career");
 
+				childNumber = 1;
+
 				questionObjects.forEach(function(element){
 					if(element.tag === "career"){
 						appendElements(element);
@@ -84,6 +102,8 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(7)")){
 				//Life tab clicked.
 				console.log("Clicked Life");
+
+				childNumber = 1;
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "life"){
