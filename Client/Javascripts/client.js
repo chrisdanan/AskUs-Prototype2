@@ -19,6 +19,14 @@ var main = function(questionObjects){
 		$("main .content").append($("<div class='question'>"));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='titleOfQuestion'>").text(element.title));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='explanationOfQuestion'>").text(element.explanation));
+
+		/*
+		element.responses.forEach(function(response){
+			$("div.question:nth-child(" + childNumber + ")").append($("<p class='responses'>").text(response));
+		});*/
+
+		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn'>").text("View Responses"));
+
 		$("main .content").append($("</div>"));
 
 		childNumber++;
