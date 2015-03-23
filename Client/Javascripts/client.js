@@ -8,6 +8,8 @@
  	-Accessing button properties:
  		http://stackoverflow.com/questions/2400386/get-class-name-using-jquery
  		http://stackoverflow.com/questions/5721724/jquery-how-to-get-which-button-was-clicked-upon-form-submission
+ 	-Removing tags with a certain class:
+ 		https://api.jquery.com/remove/
 */
 
 var main = function(questionObjects){
@@ -204,18 +206,12 @@ var main = function(questionObjects){
 				console.log(classArr);
 				console.log(currentResponse);
 
+				//Remove responses already posted to remove duplicates.
+				$(".question .response").remove();
+
 				currentResponse.responses.forEach(function(data){
 					$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text(data));
 				});
-				/*
-				questionArr.forEach(function(responses){
-					$("div.question:nth-child(" + classArr[1] + ")").append(responses.responses);
-				});*/
-
-
-
-
-
 			});
 
 			return false;
