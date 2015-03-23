@@ -3,3 +3,39 @@ body{
 	font-family: arial, verdana, sans-serif;
 }
 
+header{
+	background-color: lightgray;
+}
+
+main{
+	background-color: lightblue;
+	min-height: 300px;
+}
+
+a.category{
+	text-decoration: none;
+	margin-left: 5px;
+	margin-right: 5px;
+	background-color: cornflowerblue;
+	border: 1px solid black;
+	border-radius: 5px;
+	padding: 3px;
+	color: black;
+
+}
+
+.question{
+	border: 3px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 10px;
+}
+
+.titleOfQuestion{
+	font-weight: bold;
+	background-color: #f9bbb8;
+}
+
+.explanationOfQuestion{
+	background-color: #ddb860;
+}
