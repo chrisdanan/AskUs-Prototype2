@@ -3,6 +3,8 @@
  	-Help with <select> tag:
  		Beginning HTML, XHTML, CSS, and JavaScript by Jon Duckett
  		https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+ 	-Getting text value from <select> tag with jQuery:
+ 		https://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
 */
 
 var main = function(questionObjects){
