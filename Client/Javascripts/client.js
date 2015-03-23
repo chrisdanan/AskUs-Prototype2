@@ -5,6 +5,9 @@
  		https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
  	-Getting text value from <select> tag with jQuery:
  		https://learn.jquery.com/using-jquery-core/faq/how-do-i-get-the-text-value-of-a-selected-option/
+ 	-Accessing button properties:
+ 		http://stackoverflow.com/questions/2400386/get-class-name-using-jquery
+ 		http://stackoverflow.com/questions/5721724/jquery-how-to-get-which-button-was-clicked-upon-form-submission
 */
 
 var main = function(questionObjects){
@@ -12,20 +15,25 @@ var main = function(questionObjects){
 
 	var questions
 	var childNumber = 1;
+	var questionArr = [];
 	//console.log("Hello Vane");
 
 	function appendElements(element){
 
+		questionArr.push(element);
+		console.log("*************QuestionArr**********");
+		console.log(questionArr);
+		console.log("**********************************");
 		$("main .content").append($("<div class='question'>"));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='titleOfQuestion'>").text(element.title));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='explanationOfQuestion'>").text(element.explanation));
 
 		/*
 		element.responses.forEach(function(response){
-			$("div.question:nth-child(" + childNumber + ")").append($("<p class='responses'>").text(response));
+			$("div.question:nth-child(" + childNumber + ")").append($("<p class='responses'>").text(response).hide());
 		});*/
 
-		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn'>").text("View Responses"));
+		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn " + childNumber + "'>").text("View Responses"));
 
 		$("main .content").append($("</div>"));
 
@@ -57,6 +65,7 @@ var main = function(questionObjects){
 				console.log("Clicked All Questions");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					appendElements(element);
@@ -67,6 +76,7 @@ var main = function(questionObjects){
 				console.log("Clicked Travel");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "travel"){
@@ -78,6 +88,7 @@ var main = function(questionObjects){
 				console.log("Clicked Food");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "food"){
@@ -89,6 +100,7 @@ var main = function(questionObjects){
 				console.log("Clicked Entertainment");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "entertainment"){
@@ -100,6 +112,7 @@ var main = function(questionObjects){
 				console.log("Clicked Relationships");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "relationships"){
@@ -111,6 +124,7 @@ var main = function(questionObjects){
 				console.log("Clicked the Career");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "career"){
@@ -122,6 +136,7 @@ var main = function(questionObjects){
 				console.log("Clicked Life");
 
 				childNumber = 1;
+				questionArr = [];
 
 				questionObjects.forEach(function(element){
 					if(element.tag === "life"){
@@ -178,6 +193,30 @@ var main = function(questionObjects){
 					});
 				});
 			}
+
+			$(".viewResponsesBtn").on("click", function(){
+				console.log("Clicked button");
+				console.log($(this).attr("class"));
+
+				var classArr = $(this).attr("class").split(" ");	//Store the class of the button that was clicked, which will have the number associated with the div we want.
+				var num = classArr[1];
+				var currentResponse = questionArr[num - 1];
+				console.log(classArr);
+				console.log(currentResponse);
+
+				currentResponse.responses.forEach(function(data){
+					$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text(data));
+				});
+				/*
+				questionArr.forEach(function(responses){
+					$("div.question:nth-child(" + classArr[1] + ")").append(responses.responses);
+				});*/
+
+
+
+
+
+			});
 
 			return false;
 		});//End of on click.
