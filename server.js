@@ -32,6 +32,7 @@ var express = require("express"),
 	];
 
 app.use(express.static(__dirname + "/Client"));
+app.use(bodyParser());
 
 http.createServer(app).listen(3000);
 console.log("Listening on localhost:3000");
@@ -42,4 +43,14 @@ app.get("/hello", function(req, res){
 
 app.get("/questions.json", function(req, res){
 	res.json(questions);
+});
+
+app.post("/newQuestion", function(req, res){
+	console.log("Server received a post from /newQuestion");
+
+	var newQuestion = req.body;
+
+	questions.push(newQuestion);
+
+	res.send("Received post");
 });

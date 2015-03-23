@@ -8,6 +8,7 @@
 var main = function(questionObjects){
 	"use strict";
 
+	var questions
 	var childNumber = 1;
 	//console.log("Hello Vane");
 
@@ -146,6 +147,26 @@ var main = function(questionObjects){
 				$("main .tagSelection").append($career);
 				$("main .tagSelection").append($life);
 				$("main .content").append($submitBtn);
+
+				$submitBtn.on("click", function(){
+					var title = $inputTitle.val(),
+						explanation = $inputExplanation.val(),
+						tag = $select.val(),
+						newQuestion = {
+										"title" : title,
+										"explanation" : explanation,
+										"comments" : "null",
+										"tag" : tag};
+
+					console.log(title);
+					console.log(explanation);
+					console.log(tag);
+
+					$.post("/newQuestion", newQuestion, function(res){
+						questionObjects.push(newQuestion);
+
+					});
+				});
 			}
 
 			return false;
