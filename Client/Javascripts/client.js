@@ -1,3 +1,10 @@
+/*
+ *References:
+ 	-Help with <select> tag:
+ 		Beginning HTML, XHTML, CSS, and JavaScript by Jon Duckett
+ 		https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+*/
+
 var main = function(questionObjects){
 	"use strict";
 
@@ -110,6 +117,35 @@ var main = function(questionObjects){
 						appendElements(element);
 					}
 				});
+			} else if($element.parent().is(":nth-child(8)")){
+				//Ask a Question tab clicked.
+				console.log("Clicked Ask a Question");
+
+				var $inputTitle = $("<input type='text'>").addClass("newTitle"),
+					$titleLabel = $("<p>").text("Title"),
+					$inputExplanation = $("<input type='text'>").addClass("newExplanation"),
+					$explanationLabel = $("<p>").text("Explain Your Question"),
+					$select = $("<select class='tagSelection'>"),
+					$travel = $("<option value='travel'>").text("Travel"),
+					$food = $("<option value='food'>").text("Food"),
+					$entertainment = $("<option value='entertainment'>").text("Entertainment"),
+					$relationships = $("<option value='relationships'>").text("Relationships"),
+					$career = $("<option value='career'>").text("Career"),
+					$life = $("<option value='life'>").text("Life"),
+					$submitBtn = $("<button>").text("Submit Question");
+
+				$("main .content").append($titleLabel);
+				$("main .content").append($inputTitle);
+				$("main .content").append($explanationLabel);
+				$("main .content").append($inputExplanation);
+				$("main .content").append($select);
+				$("main .tagSelection").append($travel);
+				$("main .tagSelection").append($food);
+				$("main .tagSelection").append($entertainment);
+				$("main .tagSelection").append($relationships);
+				$("main .tagSelection").append($career);
+				$("main .tagSelection").append($life);
+				$("main .content").append($submitBtn);
 			}
 
 			return false;
