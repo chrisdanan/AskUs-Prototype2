@@ -32,6 +32,9 @@ var main = function(questionObjects){
 		//Append the "View Responses" button to each topic.  This button will allow the user to view the list of responses associated with each topic.
 		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn " + childNumber + "'>").text("View Responses"));
 
+		//Append the "Add a Response" button to each topic.  This button will allow the user to add a response to the current topic.
+		$("div.question:nth-child(" + childNumber + ")").append($("<button class='addResponseBtn " + childNumber + "'>").text("Add a Response"));
+
 		$("main .content").append($("</div>"));
 
 		//We have to increase childNumber everytime this function is called, because it keeps track of the number of divs we have created.
@@ -209,7 +212,7 @@ var main = function(questionObjects){
 
 			//If the "View Responses" button was clicked.
 			$(".viewResponsesBtn").on("click", function(){
-				console.log("Clicked button");
+				console.log("Clicked 'View Responses' button");
 				console.log($(this).attr("class"));
 
 				var classArr = $(this).attr("class").split(" ");	//Store the class of the button that was clicked, which will have the number associated with the div we want.
@@ -230,6 +233,12 @@ var main = function(questionObjects){
 						$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text("No responses for this topic. Would you like to add one?"));
 					}
 				});
+			});
+
+			$(".addResponseBtn").on("click", function(){
+				console.log("Clicked 'Add a Response' button");
+
+				
 			});
 
 			return false; //Return false so that the click doesn't follow the links on the tabs.
