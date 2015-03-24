@@ -235,10 +235,21 @@ var main = function(questionObjects){
 				});
 			});
 
+			//If the "Add a Response" button was clicked.
 			$(".addResponseBtn").on("click", function(){
 				console.log("Clicked 'Add a Response' button");
+				console.log($(this).attr("class"));
 
-				
+				var classArr = $(this).attr("class").split(" ");				//Store the class of the button here in order to access the number of the div we are interested in.
+				var num = classArr[1];											//Store the <div> class number here, which was obtained from classArr.
+				var $currentDiv = $("div.question:nth-child(" + num + ")");		//Find the <div> we are interested in manipulating.
+
+				//Remove any Add a Response items already displayed on the page.
+				$(".question .submitResponse").remove();
+
+				//Add a text input box and a submit button, which will allow the user to add a new response to the clicked discussion topic.
+				$currentDiv.append($("<input type='text' class='submitResponse submitResponseText'>"));
+				$currentDiv.append($("<button class='submitResponse submitResponseBtn'>Submit</button>"));
 			});
 
 			return false; //Return false so that the click doesn't follow the links on the tabs.
