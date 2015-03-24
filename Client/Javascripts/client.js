@@ -1,3 +1,4 @@
+//console.log("Hello Vane");
 /*
  *References:
  	-Help with <select> tag:
@@ -15,47 +16,44 @@
 var main = function(questionObjects){
 	"use strict";
 
-	var questions
-	var childNumber = 1;
-	var questionArr = [];
-	//console.log("Hello Vane");
+	var childNumber = 1;	//This keeps track of the divs for each question.
+	var questionArr = [];	//This keeps track of the questions in each category.
 
+	//Purpose: Gather each topic, put it in its own <div>, and append it to the contents portion of the html page.
 	function appendElements(element){
 
-		questionArr.push(element);
-		console.log("*************QuestionArr**********");
-		console.log(questionArr);
-		console.log("**********************************");
+		questionArr.push(element);	//Put the topic in the questionArr array.
+
+		//Apppend the title and explanation to the div, and append the div to the content portion of the html page.
 		$("main .content").append($("<div class='question'>"));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='titleOfQuestion'>").text(element.title));
 		$("div.question:nth-child(" + childNumber + ")").append($("<p class='explanationOfQuestion'>").text(element.explanation));
 
-		/*
-		element.responses.forEach(function(response){
-			$("div.question:nth-child(" + childNumber + ")").append($("<p class='responses'>").text(response).hide());
-		});*/
-
+		//Append the "View Responses" button to each topic.  This button will allow the user to view the list of responses associated with each topic.
 		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn " + childNumber + "'>").text("View Responses"));
 
 		$("main .content").append($("</div>"));
 
+		//We have to increase childNumber everytime this function is called, because it keeps track of the number of divs we have created.
 		childNumber++;
 	}
 
-	//Output question objects to see that we are getting the correct information.
+	//Output question objects to see that we are getting the correct information.  Purely for checking purposes only.
 	questionObjects.forEach(function(element){
 		console.log(element);
 		console.log(element.title);
 		console.log(element.explanation);
 	});
 
+	//Go through the tabs to find if a user clicked on one of them.  Note that "element" in the callback function holds the tabs.
 	$(".tabs a span").toArray().forEach(function(element){
+		//Find which tab the user clicked on.
 		$(element).on("click", function(){
-			var $element = $(element),
-				$content,
-				i;
+			var $element = $(element),	//Create a shortcut since we will use it a lot.
+				$content,				//
+				i;						//Loop counter.
 
-			//Remove "active" class from all tags.
+			//Remove "active" class from all tags that previously had it.
 			$(".tabs a span").removeClass("active");
 			//Make selected tab have "active" class.
 			$element.addClass("active");
@@ -66,9 +64,14 @@ var main = function(questionObjects){
 				//"All Questions" tab clicked.
 				console.log("Clicked All Questions");
 
+				//In all tab handlers, we have to initialize chilcNumber and questionArr to their default values.
+				//We do this because if the user clicked on a new tab, we delete the previous content and display the pertinent information.
+				//By deleting the previous content, we start from scratch with the <div>s for the questions and the questions in the tab.
+				//So, to keep our counts and our questions we're keeping track of consistent, we have to set the variables back to default.
 				childNumber = 1;
 				questionArr = [];
 
+				//Append the questions to the content portion of the html page by calling the function.
 				questionObjects.forEach(function(element){
 					appendElements(element);
 				});
@@ -80,6 +83,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those topics with the "travel" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "travel"){
 						appendElements(element);
@@ -92,6 +96,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those topics with the "food" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "food"){
 						appendElements(element);
@@ -104,6 +109,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those topics with the "entertainment" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "entertainment"){
 						appendElements(element);
@@ -116,6 +122,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those topics with the "relationships" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "relationships"){
 						appendElements(element);
@@ -128,6 +135,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those topics with the "career" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "career"){
 						appendElements(element);
@@ -140,6 +148,7 @@ var main = function(questionObjects){
 				childNumber = 1;
 				questionArr = [];
 
+				//Show only those tags with the "life" tag.
 				questionObjects.forEach(function(element){
 					if(element.tag === "life"){
 						appendElements(element);
@@ -149,6 +158,7 @@ var main = function(questionObjects){
 				//Ask a Question tab clicked.
 				console.log("Clicked Ask a Question");
 
+				//Create variables to easily represent the DOM elements.
 				var $inputTitle = $("<input type='text'>").addClass("newTitle"),
 					$titleLabel = $("<p>").text("Title"),
 					$inputExplanation = $("<input type='text'>").addClass("newExplanation"),
@@ -162,6 +172,7 @@ var main = function(questionObjects){
 					$life = $("<option value='life'>").text("Life"),
 					$submitBtn = $("<button>").text("Submit Question");
 
+				//Append the newly created elements to the DOM.
 				$("main .content").append($titleLabel);
 				$("main .content").append($inputTitle);
 				$("main .content").append($explanationLabel);
@@ -175,54 +186,66 @@ var main = function(questionObjects){
 				$("main .tagSelection").append($life);
 				$("main .content").append($submitBtn);
 
+				//If the  user clicked the submit button, then create a new topic by sending the user inputs to the server.
 				$submitBtn.on("click", function(){
-					var title = $inputTitle.val(),
-						explanation = $inputExplanation.val(),
-						tag = $select.val(),
-						newQuestion = {
+					var title = $inputTitle.val(),				//Holds the user input for the title of the topic.
+						explanation = $inputExplanation.val(),	//Holds the user input for the explanation of the topic.
+						tag = $select.val(),					//Holds the tag the user selected to place the question under.
+						newQuestion = {							//The JSON object we wll be sending to the server.
 										"title" : title,
 										"explanation" : explanation,
 										"comments" : "null",
 										"tag" : tag};
 
-					console.log(title);
-					console.log(explanation);
-					console.log(tag);
-
+					//Send a POST to the server with the JSON object we created.
 					$.post("/newQuestion", newQuestion, function(res){
+						console.log("Received a response from the server");
+						//Update the questionObjects object with the new topic.
 						questionObjects.push(newQuestion);
 
 					});
 				});
 			}
 
+			//If the "View Responses" button was clicked.
 			$(".viewResponsesBtn").on("click", function(){
 				console.log("Clicked button");
 				console.log($(this).attr("class"));
 
 				var classArr = $(this).attr("class").split(" ");	//Store the class of the button that was clicked, which will have the number associated with the div we want.
-				var num = classArr[1];
-				var currentResponse = questionArr[num - 1];
+				var num = classArr[1];								//Store the <div> class number in a variable.
+				var currentResponse = questionArr[num - 1];			//Find the responses for the topic the user is interested in.
+
 				console.log(classArr);
 				console.log(currentResponse);
 
 				//Remove responses already posted to remove duplicates.
 				$(".question .response").remove();
 
+				//Show responses in html page.
 				currentResponse.responses.forEach(function(data){
-					$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text(data));
+					if(data !== ""){
+						$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text(data));
+					} else{
+						$("div.question:nth-child(" + classArr[1] + ")").append($("<p class='response'>").text("No responses for this topic. Would you like to add one?"));
+					}
 				});
 			});
 
-			return false;
+			return false; //Return false so that the click doesn't follow the links on the tabs.
+
 		});//End of on click.
 	});//End of forEach.
 
-	$(".tabs a:first-child span").trigger("click");
+	$(".tabs a:first-child span").trigger("click");	//By default, the "All Questions" tab is shown on the page when the user first visits the site.
 };
 
 $(document).ready(function(){
+	//Get the data to populate the site.
 	$.getJSON("/questions.json", function(questionObjects){
 		main(questionObjects);
 	})
 });
+
+//t
+//fflvd
