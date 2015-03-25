@@ -250,6 +250,18 @@ var main = function(questionObjects){
 				//Add a text input box and a submit button, which will allow the user to add a new response to the clicked discussion topic.
 				$currentDiv.append($("<input type='text' class='submitResponse submitResponseText'>"));
 				$currentDiv.append($("<button class='submitResponse submitResponseBtn'>Submit</button>"));
+
+				//If the "Submit" button was pressed.
+				$(".submitResponseBtn").on("click", function(){
+					console.log("Submit Response button was clicked");
+
+					var newResponse = $(".submitResponseText").val();
+					console.log(newResponse);
+
+					$.post("/newResponse", {"newResponse" : newResponse}, function(res){
+						
+					});
+				});
 			});
 
 			return false; //Return false so that the click doesn't follow the links on the tabs.

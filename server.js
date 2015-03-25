@@ -84,3 +84,11 @@ app.post("/newQuestion", function(req, res){
 
 	res.send("Received post");
 });
+
+app.post("/newResponse", function(req, res){
+	console.log("Server received a post from /newResponse");
+
+	var newResponse = req.body;
+
+	console.log(newResponse);
+});
