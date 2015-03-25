@@ -20,6 +20,7 @@ var main = function(questionObjects){
 
 	var childNumber = 1;	//This keeps track of the divs for each question.
 	var questionArr = [];	//This keeps track of the questions in each category.
+	var clickedTab = "";
 
 	//Purpose: Gather each topic, put it in its own <div>, and append it to the contents portion of the html page.
 	function appendElements(element){
@@ -72,6 +73,7 @@ var main = function(questionObjects){
 			if($element.parent().is(":nth-child(1)")){
 				//"All Questions" tab clicked.
 				console.log("Clicked All Questions");
+				clickedTab = "allQuestions";
 
 				//In all tab handlers, we have to initialize chilcNumber and questionArr to their default values.
 				//We do this because if the user clicked on a new tab, we delete the previous content and display the pertinent information.
@@ -88,6 +90,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(2)")){
 				//"Travel" tab clicked.
 				console.log("Clicked Travel");
+				clickedTab = "travel";
 
 				childNumber = 1;
 				questionArr = [];
@@ -101,6 +104,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(3)")){
 				//Food tab clicked.
 				console.log("Clicked Food");
+				clickedTab = "food";
 
 				childNumber = 1;
 				questionArr = [];
@@ -114,6 +118,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(4)")){
 				//Entertainment tab clicked.
 				console.log("Clicked Entertainment");
+				clickedTab = "entertainment";
 
 				childNumber = 1;
 				questionArr = [];
@@ -127,6 +132,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(5)")){
 				//Relationships tab clicked.
 				console.log("Clicked Relationships");
+				clickedTab = "relationships";
 
 				childNumber = 1;
 				questionArr = [];
@@ -140,6 +146,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(6)")){
 				//Career tab clicked
 				console.log("Clicked the Career");
+				clickedTab = "career";
 
 				childNumber = 1;
 				questionArr = [];
@@ -153,6 +160,7 @@ var main = function(questionObjects){
 			} else if($element.parent().is(":nth-child(7)")){
 				//Life tab clicked.
 				console.log("Clicked Life");
+				clickedTab = "life"; 
 
 				childNumber = 1;
 				questionArr = [];
