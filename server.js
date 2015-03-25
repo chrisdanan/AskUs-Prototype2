@@ -88,7 +88,25 @@ app.post("/newQuestion", function(req, res){
 app.post("/newResponse", function(req, res){
 	console.log("Server received a post from /newResponse");
 
-	var newResponse = req.body;
+	var newResponse = req.body.newResponse;
+	var title = req.body.title;
 
 	console.log(newResponse);
+	console.log(title);
+
+	if(newResponse !== ""){
+		questions.forEach(function(element){
+			if(element.title === title){
+				if(element.responses[0] === ""){
+					element.responses = [newResponse];
+				} else{
+					element.responses.push(newResponse);
+				}
+			}
+		});
+	}
+
+	console.log(questions);
+	res.json(questions);
+
 });

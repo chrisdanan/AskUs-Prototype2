@@ -11,6 +11,8 @@
  		http://stackoverflow.com/questions/5721724/jquery-how-to-get-which-button-was-clicked-upon-form-submission
  	-Removing tags with a certain class:
  		https://api.jquery.com/remove/
+ 	-Get text value of paragraph element:
+ 		http://api.jquery.com/text/
 */
 
 var main = function(questionObjects){
@@ -256,10 +258,14 @@ var main = function(questionObjects){
 					console.log("Submit Response button was clicked");
 
 					var newResponse = $(".submitResponseText").val();
+					var titleOfCurrentTopic = $("div.question:nth-child(" + num + ") .titleOfQuestion").text();
 					console.log(newResponse);
+					console.log(titleOfCurrentTopic);
 
-					$.post("/newResponse", {"newResponse" : newResponse}, function(res){
-						
+					//Note to self: Find a better way to do this - maybe use id numbers?
+					$.post("/newResponse", {"newResponse" : newResponse, "title" : titleOfCurrentTopic}, function(res){
+						questionObjects = res;
+						$(".tabs a:first-child span").trigger("click");
 					});
 				});
 			});
