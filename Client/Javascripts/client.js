@@ -28,14 +28,18 @@ var main = function(questionObjects){
 
 		//Apppend the title and explanation to the div, and append the div to the content portion of the html page.
 		$("main .content").append($("<div class='question'>"));
-		$("div.question:nth-child(" + childNumber + ")").append($("<p class='titleOfQuestion'>").text(element.title));
-		$("div.question:nth-child(" + childNumber + ")").append($("<p class='explanationOfQuestion'>").text(element.explanation));
+		$("div.question:nth-child(" + childNumber + ")").append($("<div>").addClass("divTitle" + childNumber + " divTitle"));
+		$(".divTitle" + childNumber).append($("<p class='titleOfQuestion'>").text(element.title));
+		$("div.question:nth-child(" + childNumber + ")").append($("<div>").addClass("divExplanation" + childNumber + " divExplanation"));
+		$(".divExplanation" + childNumber).append($("<p class='explanationOfQuestion'>").text(element.explanation));
+
+		$("div.question:nth-child(" + childNumber + ")").append($("<div>").addClass("divButtonArea" + childNumber + " divButtonArea"));
 
 		//Append the "View Responses" button to each topic.  This button will allow the user to view the list of responses associated with each topic.
-		$("div.question:nth-child(" + childNumber + ")").append($("<button class='viewResponsesBtn " + childNumber + "'>").text("View Responses"));
+		$(".divButtonArea" + childNumber).append($("<button class='viewResponsesBtn " + childNumber + "'>").text("View Responses"));
 
 		//Append the "Add a Response" button to each topic.  This button will allow the user to add a response to the current topic.
-		$("div.question:nth-child(" + childNumber + ")").append($("<button class='addResponseBtn " + childNumber + "'>").text("Add a Response"));
+		$(".divButtonArea" + childNumber).append($("<button class='addResponseBtn " + childNumber + "'>").text("Add a Response"));
 
 		$("main .content").append($("</div>"));
 
