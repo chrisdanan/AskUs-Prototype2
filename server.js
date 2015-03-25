@@ -19,7 +19,7 @@ var express = require("express"),
 		},
 		{
 			"title" : "Where is the best place to eat?",
-			"explanation" : "I'm in town for a few days.  Does anyone know a good place to grab dinner?",
+			"explanation" : "I'm in Fullerton for a few days.  Does anyone know a good place to grab dinner?",
 			"responses" : [""],
 			"tag" : "food"
 		},
