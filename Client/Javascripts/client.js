@@ -199,7 +199,7 @@ var main = function(questionObjects){
 						newQuestion = {							//The JSON object we wll be sending to the server.
 										"title" : title,
 										"explanation" : explanation,
-										"comments" : "null",
+										"responses" : [""],
 										"tag" : tag};
 
 					//Send a POST to the server with the JSON object we created.

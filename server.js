@@ -93,6 +93,7 @@ app.post("/newResponse", function(req, res){
 
 	console.log(newResponse);
 	console.log(title);
+	console.log(questions);
 
 	if(newResponse !== ""){
 		questions.forEach(function(element){
@@ -105,8 +106,6 @@ app.post("/newResponse", function(req, res){
 			}
 		});
 	}
-
-	console.log(questions);
 	res.json(questions);
 
 });
